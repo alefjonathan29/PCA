@@ -2,7 +2,7 @@
 title: "Análise de Componetes Principais - PCA"
 output: github_document
 ---
-[Link do site que encontrei o exemplo](https://sites.google.com/site/tutorialdeanalisesestatisticas/topicos/estatistica-multivariada/analise-de-componentes-principais-pca/tutorial-1-1)
+[Baixar dados](sedimento.txt)
 
 Carregando o pacote vegan que possui a função para gerar a PCA
 ```{r message=FALSE}
@@ -112,7 +112,7 @@ fviz_pca_biplot(resultados.P,
                 title = "")
 ```
 
-
+[Link do site que encontrei o exemplo](https://sites.google.com/site/tutorialdeanalisesestatisticas/topicos/estatistica-multivariada/analise-de-componentes-principais-pca/tutorial-1-1)
 
 
 

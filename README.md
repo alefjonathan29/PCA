@@ -1,8 +1,7 @@
 Análise de Componetes Principais - PCA
 ================
 
-[Link do site que encontrei o
-exemplo](https://sites.google.com/site/tutorialdeanalisesestatisticas/topicos/estatistica-multivariada/analise-de-componentes-principais-pca/tutorial-1-1)
+[Baixar dados](sedimento.txt)
 
 Carregando o pacote vegan que possui a função para gerar a PCA
 
@@ -334,7 +333,7 @@ pacote usa o `ggplot2` como base para gerar o layout.
 library(factoextra)
 fviz_pca_biplot(resultados.P,
                 geom.ind = "point",
-                #col.ind = dados.angela,
+                #col.ind = dados.categorias, 
                 #addEllipses = TRUE,
                 #legend.title = "Groups", 
                 ggtheme = theme_bw(),
@@ -342,3 +341,6 @@ fviz_pca_biplot(resultados.P,
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+
+[Link do site que encontrei o
+exemplo](https://sites.google.com/site/tutorialdeanalisesestatisticas/topicos/estatistica-multivariada/analise-de-componentes-principais-pca/tutorial-1-1)
