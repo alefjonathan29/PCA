@@ -1,0 +1,110 @@
+---
+title: "Análise de Componetes Principais - PCA"
+output: github_document
+---
+
+[Link do site que encontrei o exemplo](https://sites.google.com/site/tutorialdeanalisesestatisticas/topicos/estatistica-multivariada/analise-de-componentes-principais-pca/tutorial-1-1)
+
+Carregando o pacote vegan que possui a função para gerar a PCA
+```{r message=FALSE}
+library(vegan)
+```
+
+Carregando a planilha de dados
+```{r}
+dados<-read.table("sedimento.txt",header=T)
+head(dados)
+```
+
+Sumarizando o conjunto de dados
+```{r}
+summary(dados)
+```
+
+### Gerando a PCA com os Valores originais
+
+Execultando a função "prcomp" que calcula a PCA
+```{r}
+resultado.pca <- prcomp(dados)
+```
+
+Mostrando os resultados
+```{r}
+resultado.pca
+```
+
+Sumarizando os resultados para obter os valores dos eixos 1 e 2
+```{r}
+summary(resultado.pca)
+#Os valores dos eixos podem ser encontrados em "Importance of components" >>>
+#"Proportion of variance", PC1 (0.7501) > pode ser interpretado que o eixo 1 
+#corresponde a 75% de explicação da variação, e PC2 (0.1983) >>> eixo 2 = 20%.
+```
+
+
+
+Visualizando os scores
+```{r}
+resultado.pca$x
+```
+
+Visualizando os loadings
+```{r}
+resultado.pca$loadings
+```
+
+#Plotando a PCA
+```{r}
+biplot(resultado.pca)
+screeplot(resultado.pca)
+```
+
+#Avaliando a variância das variáveis
+```{r}
+round(apply(dados,2,var),4)#round é a função que arredonda os valores
+###É possivel ver que as variáveis possuem grande variação entre elas,
+###nesse caso é importante fazer uma padronização para impedir que as variáveis
+###com maior variância tenham maior peso na análise.
+```
+
+### Padronizando dados ao centro com a função "scale"
+
+Podemos realizar essa padronização para evitar que as variáveis com maior variância apresentem maior peso na PCA.
+```{r}
+dados.P<-scale(dados)
+round(apply(dados.P,2,var),4)#Observe que agora eles apresentam a mesma variância 
+resultados.pca.padronizado <- prcomp(dados.P)
+
+#Também é possível fazer a padronização usando o parâmetro "scale=TRUE", na função "prcomp"
+resultados.pca.padronizado <- prcomp(dados, scale=T)
+biplot(resultados.pca.padronizado)
+
+```
+
+### Transformando dados para Log(x)+1
+
+Testando se a transformação em Log pode ajudar na padronização das variâncias.
+```{r}
+dados1 <- log(dados)+1
+round(apply(dados1,2,var),4)#Observe que ele achata as variâncias, 
+                              #mas ainda continuam muito diferentes.
+
+resultados.pca.padronizado <- prcomp(dados1)
+biplot(resultados.pca.padronizado)
+```
+
+
+#Conclusão
+A melhor forma de gerar a PCA é usando dados padronizados, dessa forma evitamos que a diferença entre as variáveis cause ruídos ao realizarmos a análise.
+
+
+
+
+
+
+
+
+
+
+
+
