@@ -2,7 +2,6 @@
 title: "Análise de Componetes Principais - PCA"
 output: github_document
 ---
-
 [Link do site que encontrei o exemplo](https://sites.google.com/site/tutorialdeanalisesestatisticas/topicos/estatistica-multivariada/analise-de-componentes-principais-pca/tutorial-1-1)
 
 Carregando o pacote vegan que possui a função para gerar a PCA
@@ -76,8 +75,8 @@ round(apply(dados.P,2,var),4)#Observe que agora eles apresentam a mesma variânc
 resultados.pca.padronizado <- prcomp(dados.P)
 
 #Também é possível fazer a padronização usando o parâmetro "scale=TRUE", na função "prcomp"
-resultados.pca.padronizado <- prcomp(dados, scale=T)
-biplot(resultados.pca.padronizado)
+resultados.P <- prcomp(dados, scale=T)
+biplot(resultados.P)
 
 ```
 
@@ -85,12 +84,12 @@ biplot(resultados.pca.padronizado)
 
 Testando se a transformação em Log pode ajudar na padronização das variâncias.
 ```{r}
-dados1 <- log(dados)+1
-round(apply(dados1,2,var),4)#Observe que ele achata as variâncias, mas ainda continuam muito diferentes.
+dados.log <- log(dados)+1
+round(apply(dados.log,2,var),4)#Observe que ele achata as variâncias, mas ainda continuam muito diferentes.
                               
 
-resultados.pca.padronizado <- prcomp(dados1)
-biplot(resultados.pca.padronizado)
+resultados.log <- prcomp(dados.log)
+biplot(resultados.log)
 ```
 
 
@@ -98,6 +97,20 @@ biplot(resultados.pca.padronizado)
 
 A melhor forma de gerar a PCA é usando dados padronizados, dessa forma evitamos que a diferença entre as variáveis cause ruído na análise.
 
+
+## Outra forma de gerar o gráfico
+
+Também podemos gerar o gráfico da PCA usando o pacote ```factoextra```, esse pacote usa o ```ggplot2``` como base para gerar o layout.  
+```{r, message= F}
+library(factoextra)
+fviz_pca_biplot(resultados.P,
+                geom.ind = "point",
+                #col.ind = dados.categorias, 
+                #addEllipses = TRUE,
+                #legend.title = "Groups", 
+                ggtheme = theme_bw(),
+                title = "")
+```
 
 
 

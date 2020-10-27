@@ -292,8 +292,8 @@ round(apply(dados.P,2,var),4)#Observe que agora eles apresentam a mesma variânc
 resultados.pca.padronizado <- prcomp(dados.P)
 
 #Também é possível fazer a padronização usando o parâmetro "scale=TRUE", na função "prcomp"
-resultados.pca.padronizado <- prcomp(dados, scale=T)
-biplot(resultados.pca.padronizado)
+resultados.P <- prcomp(dados, scale=T)
+biplot(resultados.P)
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
@@ -304,8 +304,8 @@ Testando se a transformação em Log pode ajudar na padronização das
 variâncias.
 
 ``` r
-dados1 <- log(dados)+1
-round(apply(dados1,2,var),4)#Observe que ele achata as variâncias, mas ainda continuam muito diferentes.
+dados.log <- log(dados)+1
+round(apply(dados.log,2,var),4)#Observe que ele achata as variâncias, mas ainda continuam muito diferentes.
 ```
 
     ##      N      P      K     Ca     Mg      S     Al     Fe     Mn     Zn     Mo 
@@ -314,8 +314,8 @@ round(apply(dados1,2,var),4)#Observe que ele achata as variâncias, mas ainda co
     ## 0.0049 0.1076
 
 ``` r
-resultados.pca.padronizado <- prcomp(dados1)
-biplot(resultados.pca.padronizado)
+resultados.log <- prcomp(dados.log)
+biplot(resultados.log)
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
@@ -324,3 +324,21 @@ biplot(resultados.pca.padronizado)
 
 A melhor forma de gerar a PCA é usando dados padronizados, dessa forma
 evitamos que a diferença entre as variáveis cause ruído na análise.
+
+## Outra forma de gerar o gráfico
+
+Também podemos gerar o gráfico da PCA usando o pacote `factoextra`, esse
+pacote usa o `ggplot2` como base para gerar o layout.
+
+``` r
+library(factoextra)
+fviz_pca_biplot(resultados.P,
+                geom.ind = "point",
+                #col.ind = dados.angela,
+                #addEllipses = TRUE,
+                #legend.title = "Groups", 
+                ggtheme = theme_bw(),
+                title = "")
+```
+
+![](README_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
