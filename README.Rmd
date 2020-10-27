@@ -86,8 +86,8 @@ biplot(resultados.pca.padronizado)
 Testando se a transformação em Log pode ajudar na padronização das variâncias.
 ```{r}
 dados1 <- log(dados)+1
-round(apply(dados1,2,var),4)#Observe que ele achata as variâncias, 
-                              #mas ainda continuam muito diferentes.
+round(apply(dados1,2,var),4)#Observe que ele achata as variâncias, mas ainda continuam muito diferentes.
+                              
 
 resultados.pca.padronizado <- prcomp(dados1)
 biplot(resultados.pca.padronizado)

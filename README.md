@@ -1,4 +1,4 @@
-PCA
+Análise de Componetes Principais - PCA
 ================
 
 [Link do site que encontrei o
@@ -305,7 +305,7 @@ variâncias.
 
 ``` r
 dados1 <- log(dados)+1
-round(apply(dados1,2,var),4)#Observe que ele achata as variâncias, 
+round(apply(dados1,2,var),4)#Observe que ele achata as variâncias, mas ainda continuam muito diferentes.
 ```
 
     ##      N      P      K     Ca     Mg      S     Al     Fe     Mn     Zn     Mo 
@@ -314,8 +314,6 @@ round(apply(dados1,2,var),4)#Observe que ele achata as variâncias,
     ## 0.0049 0.1076
 
 ``` r
-                              #mas ainda continuam muito diferentes.
-
 resultados.pca.padronizado <- prcomp(dados1)
 biplot(resultados.pca.padronizado)
 ```
