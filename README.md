@@ -323,5 +323,4 @@ biplot(resultados.pca.padronizado)
 ### Conclusão
 
 A melhor forma de gerar a PCA é usando dados padronizados, dessa forma
-evitamos que a diferença entre as variáveis cause ruídos ao realizarmos
-a análise.
+evitamos que a diferença entre as variáveis cause ruído na análise.
